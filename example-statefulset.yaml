@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gfg-example-statefulset
+  annotations:
+    description: "This is an example statefulset"
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: "gfg-example-service"
+  replicas: 3 # remember this, we will have 3 identical pods running
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: www
+        persistentVolumeClaim:
+          claimName: pvc-claim-2
