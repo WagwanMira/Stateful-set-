@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: nginx
   serviceName: "gfg-example-service"
-  replicas: 3 # remember this, we will have 3 identical pods running
+  replicas: 3 
   template:
     metadata:
       labels:
